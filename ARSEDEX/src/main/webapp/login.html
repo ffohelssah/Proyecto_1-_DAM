@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArseDex/acceso</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <style>
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const errorMessageDiv = document.getElementById('error-message');
+            if (params.has('error')) {
+                const error = params.get('error');
+                if (error == '1') {
+                    errorMessageDiv.textContent = 'Nombre de usuario o contraseña incorrectos.';
+                } else if (error == '2') {
+                    errorMessageDiv.textContent = 'Hubo un problema con la base de datos. Intente nuevamente más tarde.';
+                }
+                errorMessageDiv.style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+
+        <header>
+             <h1><img width="150" alt="Logo de ArsedDex" src="img/LOGO3.png" /></h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+            </ul>
+        </nav>
+        <section>
+            <article>
+                <form name="login" action="login" method="post" >
+                    <label for="usuario" class="form-Label">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="nombreHelp"/> <br>
+                    <label for="contrasenia" class="form-Label"> Contraseña</label>
+                    <input type="text" class="form-control" id="contrasenia" name="contrasenia" aria-describedby="contraseniaHelp"/> <br>
+                    <label for="email" class="form-Label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" /> <br>
+                    <input type="submit" value="acceder"></input>
+                </form>
+                    
+                <p2>¿No tienes cuenta? ¡Registrate!</p2>
+                <nav2>
+                    <ul>
+                        <li><a href="registro.html">Registrarse</a></li>
+                    </ul>
+                </nav2>        
+            </article>
+        </section>
+
+    </div>
+ <div id="error-message" class="error-message" style="display:none;"></div>
+</body>
+</html>

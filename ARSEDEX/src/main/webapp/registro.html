@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArseDex/acceso</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <script>
+		
+		function llamada(url){
+			fetch(url+id+"&op="+op)
+			.then(response => response.json())
+			.then(data => pintarFormulario(data));
+		}
+		
+		function getParameterByName(name) {
+    		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    		var results = regex.exec(location.search);
+    		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+		
+		function pintarFormulario(datos){
+			document.getElementById("id").value = datos.id;
+			document.getElementById("usuario").value = datos.usuario;
+			document.getElementById("contrasenia").value = datos.contrasenia;
+			document.getElementById("email").value = datos.email;
+			document.getElementById("permiso").value = datos.permiso;
+			
+		}
+		window.onload = function(){
+			
+		let id = getParameterByName("id");
+		let op = getParameterByName("op");
+		
+			llamada(id,op);
+		}
+		
+	</script>
+    
+</head>
+<body>
+    <div id="container">
+
+        <header>
+             <h1><img width="150" alt="Logo de ArsedDex" src="img/LOGO3.png" /></h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="login.html">Acceder</a></li>
+            </ul>
+        </nav>
+        <section>
+            <article>
+                <form action="Gestionusuarios" method="post" name="registro" id="registro">
+					<input type="hidden" id="id" name="id">
+                    <label for="usuario" class="form-Label">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="nombreHelp"/> <br>
+                    <label for="contrasenia" class="form-Label"> Contraseña</label>
+                    <input type="text" class="form-control" id="contrasenia" name="contrasenia" aria-describedby="contraseniaHelp"/> <br>
+                    <label for="email" class="form-Label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" /> <br>
+                   
+                    <input type="submit" value="crear"></input>
+                   
+                </form>
+                    
+                    
+            </article>
+        </section>
+
+    </div>
+
+</body>
+</html>
